@@ -5,7 +5,6 @@
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
-#include "raylib_game.h"
 #endif
 
 #define COUNTER_MESSAGE_BUFFER_LENGTH 20
