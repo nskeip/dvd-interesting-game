@@ -10,7 +10,7 @@
 
 #define COUNTER_MESSAGE_BUFFER_LENGTH 20
 
-static int RandLimited(int limit) {
+static int RandLessThan(int limit) {
     return rand() % limit;
 }
 
@@ -30,11 +30,11 @@ int main(void)
 
     Texture texture = LoadTexture("dvd.png");
 
-    int currentX = RandLimited(screenWidth - texture.width);
-    int currentY = RandLimited(screenHeight - texture.height);
+    int currentX = RandLessThan(screenWidth - texture.width);
+    int currentY = RandLessThan(screenHeight - texture.height);
 
-    int speedX = 1 + RandLimited(5);
-    int speedY = 1 + RandLimited(5);
+    int speedX = 1 + RandLessThan(5);
+    int speedY = 1 + RandLessThan(5);
 
     unsigned int hitCount = 0;
     unsigned int winCount = 0;
