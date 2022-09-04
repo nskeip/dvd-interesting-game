@@ -23,7 +23,7 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
+    const int screenWidth = 720;
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "DVD interesting game");
