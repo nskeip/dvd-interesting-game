@@ -67,7 +67,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "DVD interesting game");
 
-    texture = LoadTexture("dvd.png");
+    texture = LoadTexture("resources/dvd.png");
 
     currentX = RandLessThan(SCREEN_WIDTH - texture.width);
     currentY = RandLessThan(SCREEN_HEIGHT - texture.height);
