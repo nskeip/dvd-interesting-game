@@ -12,7 +12,8 @@
 #define SCREEN_WIDTH 720
 #define SCREEN_HEIGHT 450
 
-static int RandLessThan(int limit) {
+static int RandLessThan(int limit)
+{
     return rand() % limit;
 }
 
@@ -37,7 +38,7 @@ static void UpdateDrawFrame(void)
 
     xCollision = HasCollisionHappened(currentX, SCREEN_WIDTH, texture.width);
     yCollision = HasCollisionHappened(currentY, SCREEN_HEIGHT, texture.height);
-    
+
     if (xCollision || yCollision) {
         ++hitCount;
         if (xCollision && yCollision) { ++winCount; }
