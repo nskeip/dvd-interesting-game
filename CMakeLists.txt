@@ -6,7 +6,8 @@ find_package(raylib 3.0 REQUIRED) # Requires at least version 3.0
 set(CMAKE_C_STANDARD 11) # Requires C11 standard
 
 add_executable(${PROJECT_NAME} main.c)
-configure_file(dvd.png dvd.png)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/dvd.png
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(${PROJECT_NAME} raylib)
 
