@@ -54,6 +54,7 @@ dkms.conf
 
 # CMake
 build/
+build_web/
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
