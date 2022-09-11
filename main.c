@@ -38,7 +38,7 @@ static bool HasCollisionHappened(int currentCoord, int maxCoord, int bodyMeasure
     return (currentCoord <= 0) || (currentCoord >= (maxCoord - bodyMeasure));
 }
 
-static int signOf(int number) {
+static int SignOf(int number) {
     return (number >= 0) ? 1 : -1;
 }
 
@@ -60,8 +60,8 @@ static void UpdateDrawFrame(void)
         } else {
             // adding chaotic "slide" (in direction of speed vector)
             const int randomSlideLen = RandLessThan(2);  // only one is added, no need to call rand twice
-            currentX += (randomSlideLen * signOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
-            currentY += (randomSlideLen * signOf(speedY)) * xCollision;  // ...and viced versa
+            currentX += (randomSlideLen * SignOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
+            currentY += (randomSlideLen * SignOf(speedY)) * xCollision;  // ...and viced versa
         }
 
         currentX = MAX(0, MIN(currentX, SCREEN_WIDTH - texture.width));
