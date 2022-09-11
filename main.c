@@ -92,7 +92,7 @@ int main(void)
     speedY = 1 + RandLessThan(5);
 
 #if defined(PLATFORM_WEB)
-    emscripten_set_main_loop(UpdateDrawFrame, 0, 1);  // TODO: UpdateDrawFrame
+    emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
 #else
     SetTargetFPS(60);
     // Main game loop
