@@ -8,8 +8,14 @@
 #endif
 
 #define COUNTER_MESSAGE_BUFFER_LENGTH 20
-#define SCREEN_WIDTH 720
-#define SCREEN_HEIGHT 450
+
+#ifndef SCREEN_WIDTH
+    #define SCREEN_WIDTH 720
+#endif
+
+#ifndef SCREEN_HEIGHT
+    #define SCREEN_HEIGHT 450
+#endif
 
 static int RandLessThan(int limit)
 {

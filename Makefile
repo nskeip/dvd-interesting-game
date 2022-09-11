@@ -133,19 +133,19 @@ PROJECT_SOURCE_FILES ?= main.c
 build/desktop:
 	mkdir -p $@
 
-build/desktop/dvd_interesting_game: build/desktop
-	$(CC) -o $@ main.c $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -DPLATFORM_DESKTOP
+build/desktop/dvd_interesting_game: build/desktop $(PROJECT_SOURCE_FILES)
+	$(CC) -o $@ $(PROJECT_SOURCE_FILES) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -DPLATFORM_DESKTOP
 
 build/web:
 	mkdir -p $@
 
-build/web/dvd.html: build/web
-	emcc -o $@ main.c -Os -Wall $(RAYLIB_RELEASE_PATH)/libraylib.a $(INCLUDE_PATHS) \
+build/web/dvd.html: build/web $(PROJECT_SOURCE_FILES)
+	emcc -o $@ $(PROJECT_SOURCE_FILES) -Os -Wall $(RAYLIB_RELEASE_PATH)/libraylib.a $(INCLUDE_PATHS) \
 		-L. -L$(RAYLIB_RELEASE_PATH) -L$(RAYLIB_PATH)/src \
 		-s USE_GLFW=3 -s TOTAL_MEMORY=$(BUILD_WEB_HEAP_SIZE) \
 		-s FORCE_FILESYSTEM=1 \
 		--preload-file ./resources --shell-file shell.html \
-		-DPLATFORM_WEB
+		-DPLATFORM_WEB -DSCREEN_WIDTH=568 -DSCREEN_HEIGHT=320
 
 all:
 	make build/desktop/dvd_interesting_game
