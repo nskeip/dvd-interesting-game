@@ -18,10 +18,10 @@
 #endif
 
 
-static int currentX, currentY, speedX, speedY;
-static unsigned int hitCount = 0, winCount = 0;
-static Texture texture;
-static bool xCollision, yCollision;
+int currentX, currentY, speedX, speedY;
+unsigned int hitCount = 0, winCount = 0;
+Texture texture;
+bool xCollision, yCollision;
 
 char hitsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
 char winsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
