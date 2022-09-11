@@ -17,6 +17,15 @@
     #define SCREEN_HEIGHT 450
 #endif
 
+
+static int currentX, currentY, speedX, speedY;
+static unsigned int hitCount = 0, winCount = 0;
+static Texture texture;
+static bool xCollision, yCollision;
+
+char hitsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
+char winsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
+
 static int RandLessThan(int limit)
 {
     return rand() % limit;
@@ -26,14 +35,6 @@ static bool HasCollisionHappened(int currentCoord, int maxCoord, int bodyMeasure
 {
     return (currentCoord <= 0) || (currentCoord >= (maxCoord - bodyMeasure));
 }
-
-static int currentX, currentY, speedX, speedY;
-static unsigned int hitCount = 0, winCount = 0;
-static Texture texture;
-static bool xCollision, yCollision;
-
-char hitsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
-char winsMsg[COUNTER_MESSAGE_BUFFER_LENGTH] = { 0 };
 
 static void UpdateDrawFrame(void)
 {
