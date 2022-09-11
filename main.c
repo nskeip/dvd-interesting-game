@@ -59,8 +59,9 @@ static void UpdateDrawFrame(void)
             ++winCount; 
         } else {
             // adding chaotic "slide" (in direction of speed vector)
-            currentX += (RandLessThan(3) + signOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
-            currentY += (RandLessThan(3) + signOf(speedY)) * xCollision;  // ...and viced versa
+            int randomSlideLen = RandLessThan(2);  // only one is added, no need to call rand twice
+            currentX += (randomSlideLen * signOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
+            currentY += (randomSlideLen * signOf(speedY)) * xCollision;  // ...and viced versa
         }
 
         currentX = MAX(0, MIN(currentX, SCREEN_WIDTH - texture.width));
