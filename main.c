@@ -59,7 +59,7 @@ static void UpdateDrawFrame(void)
             ++winCount; 
         } else {
             // adding chaotic "slide" (in direction of speed vector)
-            int randomSlideLen = RandLessThan(2);  // only one is added, no need to call rand twice
+            const int randomSlideLen = RandLessThan(2);  // only one is added, no need to call rand twice
             currentX += (randomSlideLen * signOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
             currentY += (randomSlideLen * signOf(speedY)) * xCollision;  // ...and viced versa
         }
