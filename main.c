@@ -17,6 +17,8 @@
     #define SCREEN_HEIGHT 450
 #endif
 
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 int currentX, currentY, speedX, speedY;
 unsigned int hitCount = 0, winCount = 0;
@@ -36,6 +38,10 @@ static bool HasCollisionHappened(int currentCoord, int maxCoord, int bodyMeasure
     return (currentCoord <= 0) || (currentCoord >= (maxCoord - bodyMeasure));
 }
 
+static int signOf(int number) {
+    return (number >= 0) ? 1 : -1;
+}
+
 static void UpdateDrawFrame(void)
 {
     // Update
@@ -48,17 +54,21 @@ static void UpdateDrawFrame(void)
     if (xCollision || yCollision) {
         // stats counting
         ++hitCount;
-        if (xCollision && yCollision) { ++winCount; }
 
-        // speed vector direction change
-        if (xCollision) { 
-            speedX *= -1; 
-            currentY += RandLessThan(3) - 1; // add one of {-1,0,+1} to Y (opposite than where collision happens)
+        if (xCollision && yCollision) { 
+            ++winCount; 
+        } else {
+            // adding chaotic "slide" (in direction of speed vector)
+            currentX += (RandLessThan(3) + signOf(speedX)) * yCollision;  // yep, if collided on X, slide by Y
+            currentY += (RandLessThan(3) + signOf(speedY)) * xCollision;  // ...and viced versa
         }
-        if (yCollision) { 
-            speedY *= -1; 
-            currentX += RandLessThan(3) - 1; // add one of {-1,0,+1} to X
-        }
+
+        currentX = MAX(0, MIN(currentX, SCREEN_WIDTH - texture.width));
+        currentY = MAX(0, MIN(currentY, SCREEN_HEIGHT - texture.height));
+
+        // updating speed vector direction
+        speedX *= xCollision ? -1 : 1;
+        speedY *= yCollision ? -1 : 1;
     }
 
     snprintf(hitsMsg, COUNTER_MESSAGE_BUFFER_LENGTH, "Hits: %d", hitCount);
