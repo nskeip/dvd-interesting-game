@@ -46,10 +46,19 @@ static void UpdateDrawFrame(void)
     yCollision = HasCollisionHappened(currentY, SCREEN_HEIGHT, texture.height);
 
     if (xCollision || yCollision) {
+        // stats counting
         ++hitCount;
         if (xCollision && yCollision) { ++winCount; }
-        if (xCollision) { speedX *= -1; }
-        if (yCollision) { speedY *= -1; }
+
+        // speed vector direction change
+        if (xCollision) { 
+            speedX *= -1; 
+            currentY += RandLessThan(3) - 1; // add one of {-1,0,+1} to Y (opposite than where collision happens)
+        }
+        if (yCollision) { 
+            speedY *= -1; 
+            currentX += RandLessThan(3) - 1; // add one of {-1,0,+1} to X
+        }
     }
 
     snprintf(hitsMsg, COUNTER_MESSAGE_BUFFER_LENGTH, "Hits: %d", hitCount);
